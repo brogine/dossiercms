@@ -6,9 +6,8 @@ use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 
-class IndexController extends Controller
+class IndexController extends BaseAdminController
 {
-	public $layout = 'admin';
 
 	public function actionIndex()
     {
