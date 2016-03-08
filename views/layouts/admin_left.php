@@ -32,7 +32,8 @@
                 'items' => [
                     ['label' => 'Gii', 'icon' => 'fa fa-file-code-o', 'url' => ['/gii']],
                     ['label' => 'Posts', 'icon' => 'fa fa-pencil', 'url' => ['/admin/posts']],
-                    ['label' => 'Categories', 'icon' => 'fa fa-thumb-tack', 'url' => ['/admin/categories']]
+                    ['label' => 'Categories', 'icon' => 'fa fa-thumb-tack', 'url' => ['/admin/categories']],
+                    ['label' => 'Multimedia', 'icon' => 'fa fa-image', 'url' => ['/admin/multimedia']]
                 ],
             ]
         ) ?>

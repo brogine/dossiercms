@@ -1,5 +1,8 @@
 <?php
 use yii\helpers\Html;
+use app\assets\AdminAsset;
+
+AdminAsset::register($this);
 
 /* @var $this \yii\web\View */
 /* @var $content string */

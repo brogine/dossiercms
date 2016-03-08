@@ -1,9 +1,21 @@
 <?php
 /* @var $this yii\web\View */
 ?>
-<h1>multimedia/index</h1>
 
-<p>
-    You may change the content of this page by modifying
-    the file <code><?= __FILE__; ?></code>.
-</p>
+<div class="row gallery">
+	<div class="col-md-3">
+        <div class="well image">
+            <img class="thumbnail img-responsive" alt="" src="http://www.prepbootstrap.com/Content/images/shared/houses/h9.jpg" />
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="well video">
+            <img class="thumbnail img-responsive" alt="" src="http://www.prepbootstrap.com/Content/images/shared/houses/h8.jpg" />
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="well audio">
+            <img class="thumbnail img-responsive" alt="" src="http://www.prepbootstrap.com/Content/images/shared/houses/h4.jpg" />
+        </div>
+    </div>
+</div>

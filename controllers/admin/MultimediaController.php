@@ -2,7 +2,7 @@
 
 namespace app\controllers\admin;
 
-class MultimediaController extends \yii\web\Controller
+class MultimediaController extends BaseAdminController
 {
     public function actionDelete()
     {
