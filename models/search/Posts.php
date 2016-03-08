@@ -69,6 +69,7 @@ class Posts extends PostsModel
 
         $query->andFilterWhere(['like', 'headline', $this->headline])
             ->andFilterWhere(['like', Categories::tableName() . '.description', $this->category_id])
+            ->andFilterWhere(['like', User::tableName() . '.username', $this->author_id])
             /*->andFilterWhere(['like', 'user.username', $this->author_id])*/;
 
         return $dataProvider;

@@ -36,26 +36,26 @@ use Yii;
  */
 class Posts extends \yii\db\ActiveRecord
 {
-    const STATUS_PRIVATE = 0;
-    const STATUS_PENDING = 1;
+    const STATUS_PENDING = 0;
+    const STATUS_PRIVATE = 1;
     const STATUS_DRAFT = 2;
     const STATUS_PUBLISH = 3;
 
-    private $status = null;
+    private $_status = null;
 
     public function status()
     {
-        if($this->status == null)
+        if($this->_status == null)
         {
-            $this->status = [
-                1 => 'Private',
-                2 => 'Pending',
+            $this->_status = [
+                1 => 'Pending',
+                2 => 'Private',
                 3 => 'Draft',
                 4 => 'Publish'
             ];
         }
 
-        return $this->status;
+        return $this->_status;
     }
 
     /**
@@ -106,7 +106,7 @@ class Posts extends \yii\db\ActiveRecord
 
     public function beforeValidate()
     {
-        if($this->isNewRecord) $this->author_id = Yii::$app->user->id;
+        if($this->isNewRecord && strpos(get_class($this), 'search') === false) $this->author_id = Yii::$app->user->id;
         return parent::beforeValidate();
     }
 
@@ -188,5 +188,10 @@ class Posts extends \yii\db\ActiveRecord
     public function getAuthor()
     {
         return $this->hasOne(User::className(), ['id' => 'author_id']);
+    }
+
+    public function getStatusDesc()
+    {
+        return $this->status()[$this->status];
     }
 }

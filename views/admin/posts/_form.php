@@ -26,8 +26,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'status')
         ->dropDownList(
-            $model->status(),
-            [ 'prompt' => '' ]
+            $model->status()
         ); ?>
 
     <?= $form->field($model, 'comment_status')->checkbox() ?>

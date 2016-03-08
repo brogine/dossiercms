@@ -26,10 +26,19 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'headline',
-            'author.username',
-            'publish',
-            'status',
-            // 'comment_status',
+            [
+                'attribute' => 'author_id',
+                'value' => 'author.username',
+            ],
+            [
+                'attribute' => 'publish',
+                'format' => ['date', \Yii::$app->params['dateDisplay']]
+            ],
+            [
+                'attribute' => 'status',
+                'value' => 'statusDesc',
+                'filter' => $searchModel->status(),
+            ],
             [
                 'attribute' => 'category_id',
                 'value' => 'category.description',
