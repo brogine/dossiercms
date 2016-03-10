@@ -152,7 +152,7 @@ class m160227_221733_init extends Migration
         // Multimedia
         $this->createTable('multimedia', [
             'id'                => $this->primaryKey(),
-            'category_id'       => $this->integer()->notNull(),
+            'category_id'       => $this->integer(),
             'mime'              => $this->string(50)->notNull(),
             'location'          => $this->string(255),
             'description'       => $this->string(255),

@@ -39,7 +39,7 @@ class Multimedia extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['category_id', 'mime'], 'required'],
+            [['mime'], 'required'],
             [['category_id', 'row', 'column'], 'integer'],
             [['tags'], 'string'],
             [['mime'], 'string', 'max' => 50],

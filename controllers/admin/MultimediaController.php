@@ -2,6 +2,10 @@
 
 namespace app\controllers\admin;
 
+use app\models\UploadForm;
+use Yii;
+use yii\web\UploadedFile;
+
 class MultimediaController extends BaseAdminController
 {
     public function actionDelete()
@@ -11,12 +15,32 @@ class MultimediaController extends BaseAdminController
 
     public function actionIndex()
     {
-        return $this->render('index');
+        $model = new UploadForm();
+        return $this->render('index', ['model' => $model]);
     }
 
     public function actionUpload()
     {
-        return $this->render('upload');
+        $model = new UploadForm();
+
+        if (Yii::$app->request->isPost) {
+            $model->files = UploadedFile::getInstances($model, 'files');
+            $response = Yii::$app->response;
+            $response->format = \yii\web\Response::FORMAT_JSON;
+            $statusCode = 0;
+            $errors = null;
+            if ($model->upload())
+                $statusCode = 200;
+            else {
+                $errors = $model->errors;
+                $statusCode = 400;
+            }
+
+            $response->statusCode = $statusCode;
+            return ['success' => ($statusCode == 200 ? true : false), 'errors' => $errors];
+        }
+
+        return $this->redirect(['index']);
     }
 
     public function actionView()
