@@ -25,10 +25,10 @@ class MultimediaController extends BaseAdminController
 
         if (Yii::$app->request->isPost) {
             $model->files = UploadedFile::getInstances($model, 'files');
-            $response = Yii::$app->response;
-            $response->format = \yii\web\Response::FORMAT_JSON;
+
             $statusCode = 0;
             $errors = null;
+
             if ($model->upload())
                 $statusCode = 200;
             else {
@@ -36,6 +36,8 @@ class MultimediaController extends BaseAdminController
                 $statusCode = 400;
             }
 
+            $response = Yii::$app->response;
+            $response->format = \yii\web\Response::FORMAT_JSON;
             $response->statusCode = $statusCode;
             return ['success' => ($statusCode == 200 ? true : false), 'errors' => $errors];
         }

@@ -8,9 +8,9 @@ use yii\web\View;
 
 /* @var $this yii\web\View */
 
-DzAsset::register($this);
+//DzAsset::register($this);
 
-$this->registerJs("Dropzone.options.uploadForm = { paramName: 'files[]' };", View::POS_END, 'dropzone');
+//$this->registerJs("Dropzone.options.uploadForm = { paramName: 'files[]' };", View::POS_END, 'dropzone');
 
 ?>
 
@@ -19,6 +19,8 @@ $this->registerJs("Dropzone.options.uploadForm = { paramName: 'files[]' };", Vie
     <div class="fallback">
 
     <?= $form->field($model, 'files[]')->fileInput(['multiple' => true, 'accept' => 'audio/*,video/*,image/*,application/*']) ?>
+
+    <button>Submit</button>
 
     </div>
 

@@ -2,8 +2,10 @@
 
 namespace app\models;
 
+use yii;
 use yii\base\Model;
 use yii\web\UploadedFile;
+use yii\helpers\FileHelper;
 
 class UploadForm extends Model
 {
@@ -15,7 +17,7 @@ class UploadForm extends Model
     public function rules()
     {
         return [
-            [['files'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg, jpeg, gif, wav, mp3, flv, mp4, avi, doc, docx, xls, xlsx, pdf'],
+            [['files'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg, jpeg, gif, wav, mp3, flv, mp4, avi, doc, docx, xls, xlsx, pdf', 'maxFiles' => 4],
         ];
     }
     
@@ -28,11 +30,9 @@ class UploadForm extends Model
                 $fileLocation = current(explode('/', $file->type));
                 $filePath = Yii::getAlias('@app') . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . $fileLocation . DIRECTORY_SEPARATOR;
 
-                if (realpath($filePath) === false OR !is_dir(realpath($filePath)))
-                	mkdir($filePath, 0777);
+                FileHelper::createDirectory($filePath);
 
                 if($file->saveAs($filePath . $fileName)) {
-                	// Store it
                 	$nMultimedia = new Multimedia();
                 	$nMultimedia->mime = $file->type;
                 	$nMultimedia->location = $fileLocation . '/' . $fileName;
