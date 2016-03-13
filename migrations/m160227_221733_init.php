@@ -157,8 +157,8 @@ class m160227_221733_init extends Migration
             'location'          => $this->string(255),
             'description'       => $this->string(255),
             'credits'           => $this->string(255),
-            'row'               => $this->smallInteger(2),
-            'column'            => $this->smallInteger(2),
+            'row'               => $this->smallInteger(2)->defaultValue(6),
+            'column'            => $this->smallInteger(2)->defaultValue(6),
             'tags'              => $this->text()
         ]);
         

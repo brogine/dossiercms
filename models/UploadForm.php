@@ -17,7 +17,7 @@ class UploadForm extends Model
     public function rules()
     {
         return [
-            [['files'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg, jpeg, gif, wav, mp3, flv, mp4, avi, doc, docx, xls, xlsx, pdf', 'maxFiles' => 4],
+            [['files'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg, jpeg, gif, wav, mp3, flv, mp4, avi, doc, docx, xls, xlsx, pdf', 'maxFiles' => 0],
         ];
     }
     
@@ -28,7 +28,7 @@ class UploadForm extends Model
 
                 $fileName = uniqid() . '.' . $file->extension;
                 $fileLocation = current(explode('/', $file->type));
-                $filePath = Yii::getAlias('@app') . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . $fileLocation . DIRECTORY_SEPARATOR;
+                $filePath = Yii::getAlias(Yii::$app->params['media.basePath']) . $fileLocation . DIRECTORY_SEPARATOR;
 
                 FileHelper::createDirectory($filePath);
 

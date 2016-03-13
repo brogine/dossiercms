@@ -8,9 +8,9 @@ use yii\web\View;
 
 /* @var $this yii\web\View */
 
-//DzAsset::register($this);
+DzAsset::register($this);
 
-//$this->registerJs("Dropzone.options.uploadForm = { paramName: 'files[]' };", View::POS_END, 'dropzone');
+$this->registerJs("Dropzone.options.uploadForm = { paramName: 'UploadForm[files][]' };", View::POS_END, 'dropzone');
 
 ?>
 
@@ -27,19 +27,27 @@ use yii\web\View;
 <?php ActiveForm::end() ?>
 
 <div class="row gallery">
-	<div class="col-md-3">
-        <div class="well image">
-            <img class="thumbnail img-responsive" alt="" src="http://www.prepbootstrap.com/Content/images/shared/houses/h9.jpg" />
+
+<?php foreach ($multimedia as $media): ?>
+
+    <div class="col-md-2 col-xs-4">
+        <div class="gallery-item hovereffect">
+            <img class="img-responsive center-block" alt="" src="<?= $media->url ?>" />
+            <div class="overlay">
+                <h2><?= $media->type ?></h2>
+                <p class="icon-links">
+                    <?= Html::a('<span class="fa fa-close text-danger"></span>', ['admin/multimedia/delete', 'id' => $media->id], [
+                        'data' => [
+                            'confirm' => 'Are you sure you want to delete this ' . $media->type . '?',
+                            'method' => 'post',
+                        ]
+                    ]) ?>
+                    <?= Html::a('<span class="fa fa-pencil"></span>', ['admin/multimedia/view', 'id' => $media->id]) ?>
+                </p>
+            </div>
         </div>
     </div>
-    <div class="col-md-3">
-        <div class="well video">
-            <img class="thumbnail img-responsive" alt="" src="http://www.prepbootstrap.com/Content/images/shared/houses/h8.jpg" />
-        </div>
-    </div>
-    <div class="col-md-3">
-        <div class="well audio">
-            <img class="thumbnail img-responsive" alt="" src="http://www.prepbootstrap.com/Content/images/shared/houses/h4.jpg" />
-        </div>
-    </div>
+
+<?php endforeach; ?>
+
 </div>

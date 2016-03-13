@@ -68,10 +68,20 @@ class Multimedia extends \yii\db\ActiveRecord
     public function beforeDelete()
     {
         if (parent::beforeDelete()) {
-            $filePath = Yii::getAlias('@app') . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . current(explode('/', $this->mime)) . DIRECTORY_SEPARATOR;
+            $filePath = Yii::getAlias(Yii::$app->params['media.BasePath']) . $this->type . DIRECTORY_SEPARATOR;
             return unlink($filePath . $this->location);
         }
         return false;
+    }
+
+    public function getUrl()
+    {
+        return Yii::getAlias(Yii::$app->params['media.url']) . $this->location;
+    }
+
+    public function getType()
+    {
+        return current(explode('/', $this->mime));
     }
 
     /**

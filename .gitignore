@@ -27,4 +27,4 @@ phpunit.phar
 /phpunit.xml
 
 # uploads folder
-/uploads
+/web/uploads
